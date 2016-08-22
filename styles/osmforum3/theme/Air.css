@@ -943,21 +943,21 @@ MAIN POSTS
 	padding: 0;
 }
 
-.pun .quotebox {
+.pun blockquote {
 	border-style: solid;
 	border-width: 1px 1px 1px 3px;
 	margin: 0.75em 1em;
 	padding: 0 0.75em;
 }
 
-.pun .quotebox cite {
+.pun blockquote cite {
 	display: block;
 	padding: 0.75em 0 0 0;
 	font-weight: bold;
 	line-height: 1.462em;
 }
 
-.pun .quotebox blockquote {
+.pun blockquote {
 	overflow: hidden;
 	width: 100%;
 }
@@ -1535,13 +1535,14 @@ html, body, .pun {
 	color: #566579;
 }
 
-.pun .quotebox {
+.pun blockquote {
+        width: 93%;
 	background: #f8f9f0;
 	border-color: #7aadbd;
 	color: #566579;
 }
 
-.pun .quotebox cite {
+.pun blockquote cite {
 	color: #357082;
 }
 

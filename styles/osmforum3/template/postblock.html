@@ -1,12 +1,17 @@
 
 <div id="p603287" class="blockpost roweven{% if postrow.S_FIRST_ROW %} firstpost blockpost1{% endif %}">
-	<h2><span><span class="conr">#{{ postrow.S_ROW_COUNT + 1 }}</span> <a href="viewtopic.php?pid=603287#p603287">{{ postrow.POST_DATE }}</a></span></h2>
+	<h2>
+            <span>
+                <span class="conr">#{{ postrow.S_ROW_COUNT + 1 }}</span> 
+                <a href="viewtopic.php?pid=603287#p603287">{{ postrow.POST_DATE }}</a>
+            </span>
+        </h2>
 	<div class="box">
 		<div class="inbox">
 			<div class="postbody">
 				<div class="postleft">
 					<dl>
-						<dt><strong>{{ postrow.POST_AUTHOR }}</strong></dt>
+						<dt style="position:relative;top:-33px;height:1px;"><strong>{{ postrow.POST_AUTHOR }}</strong></dt>
 						<dd class="usertitle"><strong>{{ postrow.RANK_TITLE }}</strong></dd>
                                                 <dd><span>From: {{ postrow.POSTER_FROM }}</span></dd>
 						<dd><span>Registered: {{ postrow.POSTER_JOINED }}</span></dd>
