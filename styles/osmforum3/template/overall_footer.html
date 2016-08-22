@@ -5,102 +5,36 @@
 	<div class="box">
 		<div id="brdfooternav" class="inbox">
 			<div class="conl">
+                            {% if loops.jumpbox_forums %}
 				<form id="qjump" method="get" action="viewforum.php">
 					<div><label><span>Jump to<br /></span>
-					<select name="id" onchange="window.location=('viewforum.php?id='+this.options[this.selectedIndex].value)">
-						<optgroup label="OpenStreetMap">
-							<option value="10">Questions and Answers</option>
-							<option value="54">Editors</option>
-							<option value="13">Development</option>
-							<option value="11">Meetings and Events</option>
-						</optgroup>
-						<optgroup label="OSM Specials">
-							<option value="56">Android</option>
-							<option value="43">Crisis mapping</option>
-							<option value="26">Garmin maps</option>
-							<option value="67">Indoor mapping</option>
-							<option value="37">Magellan maps</option>
-							<option value="42">OpenStreetMap 3D</option>
-							<option value="84">OSMF</option>
-							<option value="52">Wiki team</option>
-						</optgroup>
-						<optgroup label="OSM Forum">
-							<option value="9">General chat</option>
-						</optgroup>
-						<optgroup label="OSM Community">
-							<option value="53">users: Algeria</option>
-							<option value="49">users: Argentina</option>
-							<option value="24">users: Australia</option>
-							<option value="89">users: Austria</option>
-							<option value="29">users: Belgium</option>
-							<option value="35">users: Belarus</option>
-							<option value="66">users: Bosnia and Herzegovina</option>
-							<option value="74">users: Brazil</option>
-							<option value="57">users: Bulgaria</option>
-							<option value="63">users: Cambodia</option>
-							<option value="16">users: Canada</option>
-							<option value="51">users: Croatia</option>
-							<option value="72">users: Cuba</option>
-							<option value="73">users: China</option>
-							<option value="47">users: Czech</option>
-							<option value="48">users: Denmark</option>
-							<option value="88">users: East Africa</option>
-							<option value="71">users: Estonia</option>
-							<option value="87">users: Ecuador</option>
-							<option value="15">users: Finland</option>
-							<option value="22">users: France</option>
-							<option value="14">users: Germany</option>
-							<option value="27">users: Greece</option>
-							<option value="25">users: Hungary</option>
-							<option value="65">users: India</option>
-							<option value="82">users: Indonesia</option>
-							<option value="34">users: Ireland</option>
-							<option value="33">users: Israel</option>
-							<option value="39">users: Italy</option>
-							<option value="85">Users: Japan</option>
-							<option value="59">users: Latvia</option>
-							<option value="36">users: Macedonia</option>
-							<option value="60">users: Malaysia</option>
-							<option value="79">users: Mexico</option>
-							<option value="70">users: Montenegro</option>
-							<option value="81">users: Nepal</option>
-							<option value="12">users: Netherlands</option>
-							<option value="68">users: Norway</option>
-							<option value="61">users: Panama</option>
-							<option value="80">users: Pakistan</option>
-							<option value="23">users: Poland</option>
-							<option value="86">users: Portugal</option>
-							<option value="69">users: Romania</option>
-							<option value="21">users: Russia</option>
-							<option value="62">users: Serbia</option>
-							<option value="58">users: Slovenia</option>
-							<option value="75">users: South Africa</option>
-							<option value="83">users: Spain</option>
-							<option value="77">users: Sri Lanka</option>
-							<option value="4">users:  Sweden</option>
-							<option value="30">users: Switzerland</option>
-							<option value="46">users: Thailand</option>
-							<option value="44">users: Turkey</option>
-							<option value="40">users: Ukraine</option>
-							<option value="5">users:  United Kingdom</option>
-							<option value="20">users: United States</option>
-							<option value="78">users: Uruguay</option>
-							<option value="50">users: Venezuela</option>
-						</optgroup>
-						<optgroup label="Archive">
-							<option value="19">Carnaval kaart</option>
-							<option value="17">Friestalige kaart / Fryske kaart</option>
-						</optgroup>
+					<select name="f" onchange="window.location=('viewforum.php?f='+this.options[this.selectedIndex].value)">
+                                            
+                                            
+                                            {% for forum in loops.jumpbox_forums %}
+                                                
+						{% if forum.S_IS_CAT %}
+                                                    </optgroup>
+                                                    <optgroup label="{{ forum.FORUM_NAME }}">
+                                                {% else %}
+                                                    <option value="{{ forum.FORUM_ID }}"{% if forum.SELECTED %} SELECTED{% endif %}>
+                                                        {{ forum.FORUM_NAME }}
+                                                    </option>
+                                                {% endif %}
+                                                
+                                            {% endfor %}
+                                            
 					</select></label>
 					<input type="submit" value=" Go " accesskey="g" />
 					</div>
 				</form>
+                            {% endif %}
 			</div>
 			<div class="conr">
 				<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;type=atom">Atom active topics feed</a></span></p>
                                 <p id="poweredby">
                                     Engine powered by <a href="http://phpbb.com/">phpBB</a><br> 
-                                    Design powered <a href="http://fluxbb.org/">fluxBB</a></p>
+                                    Air Design powered <a href="http://fluxbb.org/">fluxBB</a></p>
 			</div>
 			<div class="clearer"></div>
 		</div>

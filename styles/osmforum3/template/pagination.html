@@ -1,0 +1,7 @@
+<p class="pagelink">
+    {% if loops.pagination|length %}
+        {# INCLUDE 'pagination.html' #}MEHRERE SEITEN
+    {% else %}
+        <span class="pages-label">Pages: </span><strong class="item1">1</strong>
+    {% endif %}
+</p>

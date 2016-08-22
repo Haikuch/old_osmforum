@@ -17,13 +17,9 @@
 {% endif %}
         
         <div class="pagepost">
-            <p class="pagelink conl">
-                {% if loops.pagination|length %}
-                    {% INCLUDE 'pagination.html' %}
-                {% else %}
-                    <span class="pages-label">Pages: </span><strong class="item1">1</strong>
-                {% endif %}
-            </p>
+            
+            {% include 'pagination.html' %}
+            
             {% if S_REGISTERED_USER and U_POST_NEW_TOPIC %}
                 <p class="postlink conr"><a href="{{ U_POST_NEW_TOPIC }}">Post new topic</a></p>
             {% endif %}
@@ -81,13 +77,9 @@
     <div class="linksb forumview">
         <div class="inbox crumbsplus">
             <div class="pagepost">
-                <p class="pagelink conl">
-                    {% if loops.pagination|length %}
-                        {% INCLUDE 'pagination.html' %}
-                    {% else %}
-                        <span class="pages-label">Pages: </span><strong class="item1">1</strong>
-                    {% endif %}
-                </p>
+                
+                {% include 'pagination.html' %}
+                
                 {% if S_REGISTERED_USER and U_POST_NEW_TOPIC %}
                     <p class="postlink conr"><a href="{{ U_POST_NEW_TOPIC }}">Post new topic</a></p>
                 {% endif %}
