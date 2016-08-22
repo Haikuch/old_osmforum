@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html dir="{{ S_CONTENT_DIRECTION }}" lang="{{ S_USER_LANG }}">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{{ META }}
+<title>{% if UNREAD_NOTIFICATIONS_COUNT %}({{ UNREAD_NOTIFICATIONS_COUNT }}) {% endif %}{% if not S_VIEWTOPIC and not S_VIEWFORUM %}{{ SITENAME }} - {% endif %}{% if S_IN_MCP %}{{ lang('MCP') }} - {% elseif S_IN_UCP %}{{ lang('UCP') }} - {% endif %}{{ PAGE_TITLE }}{% if S_VIEWTOPIC or S_VIEWFORUM %} - {{ SITENAME }}{% endif %}</title>
+
+{% if S_ENABLE_FEEDS %}
+	{% if S_ENABLE_FEEDS_OVERALL %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ SITENAME }}" href="{{ U_FEED }}">{% endif %}
+	{% if S_ENABLE_FEEDS_NEWS %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('FEED_NEWS') }}" href="{{ U_FEED }}?mode=news">{% endif %}
+	{% if S_ENABLE_FEEDS_FORUMS %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('ALL_FORUMS') }}" href="{{ U_FEED }}?mode=forums">{% endif %}
+	{% if S_ENABLE_FEEDS_TOPICS %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('FEED_TOPICS_NEW') }}" href="{{ U_FEED }}?mode=topics">{% endif %}
+	{% if S_ENABLE_FEEDS_TOPICS_ACTIVE %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('FEED_TOPICS_ACTIVE') }}" href="{{ U_FEED }}?mode=topics_active">{% endif %}
+	{% if S_ENABLE_FEEDS_FORUM and S_FORUM_ID %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('FORUM') }} - {{ FORUM_NAME }}" href="{{ U_FEED }}?f={{ S_FORUM_ID }}">{% endif %}
+	{% if S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID %}<link rel="alternate" type="application/atom+xml" title="{{ lang('FEED') }} - {{ lang('TOPIC') }} - {{ TOPIC_TITLE }}" href="{{ U_FEED }}?f={{ S_FORUM_ID }}&amp;t={{ S_TOPIC_ID }}">{% endif %}
+	{% EVENT overall_header_feeds %}
+{% endif %}
+
+{% if U_CANONICAL %}
+	<link rel="canonical" href="{{ U_CANONICAL }}">
+{% endif %}
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<link href="{{ T_STYLESHEET_LINK }}" rel="stylesheet">
+<link href="{{ T_STYLESHEET_LANG_LINK }}" rel="stylesheet">
+<link href="{{ T_THEME_PATH }}/responsive.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet" media="all and (max-width: 700px)">
+
+{% if S_CONTENT_DIRECTION eq 'rtl' %}
+	<link href="{{ T_THEME_PATH }}/bidi.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
+{% endif %}
+
+{% if S_PLUPLOAD %}
+	<link href="{{ T_THEME_PATH }}/plupload.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
+{% endif %}
+
+<!--[if lte IE 9]>
+	<link href="{{ T_THEME_PATH }}/tweaks.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
+<![endif]-->
+
+{% EVENT overall_header_head_append %}
+
+{{ definition.STYLESHEETS }}
+
+{% EVENT overall_header_stylesheets_after %}
+
+</head>
+<body id="phpbb" class="nojs notouch section-{{ SCRIPT_NAME }} {{ S_CONTENT_DIRECTION }} {{ BODY_CLASS }}">
+
+{% EVENT overall_header_body_before %}
+
+<div id="wrap">
+	<a id="top" class="anchor" accesskey="t"></a>
+	<div id="page-header">
+		<div class="headerbar" role="banner">
+			<div class="inner">
+
+			<div id="site-description">
+				<a id="logo" class="sitename" href="{% if U_SITE_HOME %}{{ U_SITE_HOME }}{% else %}{{ U_INDEX }}{% endif %}" title="{% if U_SITE_HOME %}{{ lang('SITE_HOME') }}{% else %}{{ lang('INDEX') }}{% endif %}">
+                                    {{ SITENAME }}
+                                </a>
+				<p class="description">{{ SITE_DESCRIPTION }}</p>
+				<p class="skiplink"><a href="#start_here">{{ lang('SKIP') }}</a></p>
+			</div>
+
+			{% EVENT overall_header_searchbox_before %}
+			{% if S_DISPLAY_SEARCH and not S_IN_SEARCH and false %}
+			<div id="search-box" class="search-box search-header" role="search">
+				<form action="{{ U_SEARCH }}" method="get" id="search">
+				<fieldset>
+					<input name="keywords" id="keywords" type="search" maxlength="128" title="{{ lang('SEARCH_KEYWORDS') }}" class="inputbox search tiny" size="20" value="{{ SEARCH_WORDS }}" placeholder="{{ lang('SEARCH_MINI') }}" />
+					<button class="button icon-button search-icon" type="submit" title="{{ lang('SEARCH') }}">{{ lang('SEARCH') }}</button>
+					<a href="{{ U_SEARCH }}" class="button icon-button search-adv-icon" title="{{ lang('SEARCH_ADV') }}">{{ lang('SEARCH_ADV') }}</a>
+					{{ S_SEARCH_HIDDEN_FIELDS }}
+				</fieldset>
+				</form>
+			</div>
+			{% endif %}
+
+			</div>
+		</div>
+		{% EVENT overall_header_navbar_before %}
+		{% INCLUDE 'navbar_header.html' %}
+	</div>
+
+        {% if S_REGISTERED_USER %}
+            
+        {% else %}
+            
+            <div id="quicklinks">
+
+                <div class="left">
+
+                    {{ lang('You are not logged in.') }}
+
+                </div>
+                    
+                <div class="right">
+                    
+                    <img src="styles/osmforum2/theme/images/fluxbbair_bull.png"/>
+                    Topics: 
+                    <a href="">Active</a> |
+                    <a href="">Unanswered</a>
+                    
+                </div>
+                    
+                <div class="clear"></div>
+            </div>
+            
+        {% endif %}
+        
+	{% EVENT overall_header_page_body_before %}
+        
+        <div id="announce">
+            The forum software has recently been upgraded. Not all previous modifications have been re-applied yet, see here for more info and problem reporting.
+        </div>
+        
+        <ul id="nav-breadcrumbs" role="menubar">
+		
+		{% EVENT overall_header_breadcrumbs_before %}
+		<li class="breadcrumbs">
+                        
+			{% EVENT overall_header_breadcrumb_prepend %}
+                        
+			<span class="crumb"{{ definition.MICRODATA }}>
+                            <a href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index" itemprop="url">
+                                <span itemprop="title">{{ lang('INDEX') }}</span>
+                            </a>
+                        </span>
+                            
+			{% for navlinks in loops.navlinks %}
+                            
+				{% EVENT overall_header_navlink_prepend %}
+				<span class="crumb"{{ definition.MICRODATA }}
+                                      {% if navlinks.MICRODATA %} 
+                                          {{ navlinks.MICRODATA }}
+                                      {% endif %}>
+                                    <a href="{{ navlinks.U_VIEW_FORUM }}" itemprop="url">
+                                        <span itemprop="title">{{ navlinks.FORUM_NAME }}</span>
+                                    </a>
+                                </span>
+                                    
+				{% EVENT overall_header_navlink_append %}
+			{% endfor %}
+                        
+                        <span class="crumb">
+                            <a href="{{ U_VIEW_TOPIC }}" itemprop="url">
+                                <span itemprop="title">{{ TOPIC_TITLE }}</span>
+                            </a>
+                        </span>
+                        
+			{% EVENT overall_header_breadcrumb_append %}
+		</li>
+                
+               
+		{% EVENT overall_header_breadcrumbs_after %}
+
+		{% if S_DISPLAY_SEARCH and not S_IN_SEARCH %}
+			<li class="rightside responsive-search" style="display: none;"><a href="{{ U_SEARCH }}" title="{{ lang('SEARCH_ADV_EXPLAIN') }}" role="menuitem">{{ lang('SEARCH') }}</a></li>
+		{% endif %}
+                
+                <div class="clear"></div>
+	</ul>
+
+	<a id="start_here" class="anchor"></a>
+	<div id="page-body" role="main">
+		{% if S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) %}
+		<div id="information" class="rules">
+			<div class="inner">
+				<strong>{{ lang('INFORMATION') }}{{ lang('COLON') }}</strong> {{ lang('BOARD_DISABLED') }}
+			</div>
+		</div>
+		{% endif %}
+                
+		{% EVENT overall_header_content_before %}

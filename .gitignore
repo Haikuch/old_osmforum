@@ -1,0 +1,11 @@
+/cache/*
+!/cache/.htaccess
+!/cache/index.html
+/composer.phar
+/config*.php*
+/files/*
+/images/avatars/gallery/*
+/images/avatars/upload/*
+/images/ranks/*
+/install/schemas/schema.json
+/_collect/

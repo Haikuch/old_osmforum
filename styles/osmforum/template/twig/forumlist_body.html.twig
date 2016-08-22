@@ -1,0 +1,132 @@
+
+{% for forumrow in loops.forumrow %}
+	{% if (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  %}
+			</ul>
+
+			</div>
+		</div>
+	{% endif %}
+
+	{% EVENT forumlist_body_category_header_before %}
+	{% if forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  %}
+		<div class="forabg category-{{ forumrow.FORUM_ID }}{% if definition.STANDARD_FORUMS_LAYOUT == 0 %} elegant{% endif %}" data-hide-description="{{ definition.HIDE_FORUM_DESCRIPTION }}">
+			<div class="inner">
+			<ul class="topiclist">
+				<li class="header">
+					{% EVENT forumlist_body_category_header_row_prepend %}
+					<dl class="icon">
+						<dt><div class="list-inner">{% if forumrow.S_IS_CAT %}<a href="{{ forumrow.U_VIEWFORUM }}" data-id="{{ forumrow.FORUM_ID }}">{{ forumrow.FORUM_NAME }}</a>{% else %}{{ lang('FORUM') }}{% endif %}</div></dt>
+						<dd class="topics">{{ lang('TOPICS') }}</dd>
+						<dd class="posts">{{ lang('POSTS') }}</dd>
+						<dd class="lastpost"><span>{{ lang('LAST_POST') }}</span></dd>
+					</dl>
+					{% EVENT forumlist_body_category_header_row_append %}
+				</li>
+			</ul>
+			<ul class="topiclist forums">
+	{% endif %}
+	{% EVENT forumlist_body_category_header_after %}
+
+	{% if not forumrow.S_IS_CAT %}
+		{% EVENT forumlist_body_forum_row_before %}
+		<li class="row forum-{{ forumrow.FORUM_ID }}">
+			{% EVENT forumlist_body_forum_row_prepend %}
+			{% DEFINE EXTRA_DESC %}
+			{% if definition.STANDARD_FORUMS_LAYOUT == 0 and not forumrow.CLICKS and not forumrow.S_IS_LINK %}
+				<div class="forum-statistics">
+					<span class="dfn">{{ lang('TOPICS') }}</span>{{ lang('COLON') }} <span class="value">{{ forumrow.TOPICS }}</span><span class="comma">{{ lang('COMMA_SEPARATOR') }}</span>
+					<span class="dfn">{{ lang('POSTS') }}</span>{{ lang('COLON') }} <span class="value">{{ forumrow.POSTS }}</span>
+				</div>
+			{% endif %}
+			{% ENDDEFINE  %}
+			<dl class="icon {{ forumrow.FORUM_IMG_STYLE }}{% if definition.EXTRA_DESC|trim %} elegant-row{% endif %}">
+				<dt title="{{ forumrow.FORUM_FOLDER_IMG_ALT }}">
+					{% if forumrow.S_UNREAD_FORUM %}<a href="{{ forumrow.U_VIEWFORUM }}" class="icon-link"></a>{% endif %}
+					<div class="list-inner">
+						{% if S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED %}<!-- <a class="feed-icon-forum" title="{{ lang('FEED') }} - {{ forumrow.FORUM_NAME }}" href="{{ U_FEED }}?f={{ forumrow.FORUM_ID }}"></a> -->{% endif %}
+
+						{% if forumrow.FORUM_IMAGE %}<span class="forum-image">{{ forumrow.FORUM_IMAGE }}</span>{% endif %}
+						<a href="{{ forumrow.U_VIEWFORUM }}" class="forumtitle" data-id="{{ forumrow.FORUM_ID }}">{{ forumrow.FORUM_NAME }}</a>
+						{% if forumrow.FORUM_DESC %}<div class="forum-description">{{ forumrow.FORUM_DESC }}</div>{% endif %}
+						{{ definition.EXTRA_DESC }}
+						{% if forumrow.MODERATORS %}
+							<div class="forum-moderators"><strong>{{ forumrow.L_MODERATOR_STR }}{{ lang('COLON') }}</strong> {{ forumrow.MODERATORS }}</div>
+						{% endif %}
+						{% if forumrow.subforum|length and forumrow.S_LIST_SUBFORUMS %}
+							<div class="subforums-list">
+							{% EVENT forumlist_body_subforums_before %}
+							<strong>{{ forumrow.L_SUBFORUM_STR }}{{ lang('COLON') }}</strong>
+							<ul>
+							{% for subforum in forumrow.subforum %}
+								<li><a href="{{ subforum.U_SUBFORUM }}" class="subforum{% if subforum.S_UNREAD %} unread{% else %} read{% endif %}" title="{% if subforum.S_UNREAD %}{{ lang('UNREAD_POSTS') }}{% else %}{{ lang('NO_UNREAD_POSTS') }}{% endif %}">{{ subforum.SUBFORUM_NAME }}</a>{% if not subforum.S_LAST_ROW %}<span>{{ lang('COMMA_SEPARATOR') }}</span>{% endif %}</li>
+							{% endfor %}
+							</ul>
+							{% EVENT forumlist_body_subforums_after %}
+							</div>
+						{% endif %}
+
+						{% if not S_IS_BOT %}
+						{% if definition.EXTRA_DESC|trim == '' %}
+						<div class="responsive-show" style="display: none;">
+							{% if forumrow.CLICKS %}
+								{{ lang('REDIRECTS') }}{{ lang('COLON') }} <strong>{{ forumrow.CLICKS }}</strong>
+							{% elseif not forumrow.S_IS_LINK and forumrow.TOPICS %}
+								{{ lang('TOPICS') }}{{ lang('COLON') }} <strong>{{ forumrow.TOPICS }}</strong>
+							{% endif %}
+						</div>
+						{% endif %}
+							{% if not forumrow.S_IS_LINK and forumrow.LAST_POST_TIME %}
+							<div class="forum-lastpost" style="display: none;">
+								<span><strong>{{ lang('LAST_POST') }}{{ lang('COLON') }}</strong> <a href="{{ forumrow.U_LAST_POST }}" title="{{ forumrow.LAST_POST_SUBJECT }}" class="lastsubject">{{ forumrow.LAST_POST_SUBJECT_TRUNCATED }}</a></span>
+								<span>{{ lang('POST_BY_AUTHOR') }} {{ forumrow.LAST_POSTER_FULL }}, {{ forumrow.LAST_POST_TIME }}</span>
+							</div>
+							{% endif %}
+						{% endif %}
+
+						{% if forumrow.U_UNAPPROVED_TOPICS %}
+							<a href="{{ forumrow.U_UNAPPROVED_TOPICS }}" class="forum-mcplink">{{ UNAPPROVED_IMG }}</a>
+						{% elseif forumrow.U_UNAPPROVED_POSTS %}
+							<a href="{{ forumrow.U_UNAPPROVED_POSTS }}" class="forum-mcplink">{{ UNAPPROVED_POST_IMG }}</a>
+						{% endif %}
+					</div>
+				</dt>
+				{% if forumrow.CLICKS %}
+					<dd class="redirect"><span>{{ lang('REDIRECTS') }}{{ lang('COLON') }} {{ forumrow.CLICKS }}</span></dd>
+				{% elseif not forumrow.S_IS_LINK %}
+					{% if definition.STANDARD_FORUMS_LAYOUT != 0 %}
+					<dd class="topics">{{ forumrow.TOPICS }} <dfn>{{ lang('TOPICS') }}</dfn></dd>
+					<dd class="posts">{{ forumrow.POSTS }} <dfn>{{ lang('POSTS') }}</dfn></dd>
+					{% endif %}
+					<dd class="lastpost"><span>
+						{% if forumrow.LAST_POST_TIME %}<dfn>{{ lang('LAST_POST') }}</dfn>
+						{% if forumrow.S_DISPLAY_SUBJECT %}
+							{% EVENT forumlist_body_last_post_title_prepend %}
+							<a href="{{ forumrow.U_LAST_POST }}" title="{{ forumrow.LAST_POST_SUBJECT }}" class="lastsubject">{{ forumrow.LAST_POST_SUBJECT_TRUNCATED }}</a> <br />
+						{% endif %} 
+						{{ lang('POST_BY_AUTHOR') }} {{ forumrow.LAST_POSTER_FULL }}
+						{% if not S_IS_BOT %}<a href="{{ forumrow.U_LAST_POST }}">{{ LAST_POST_IMG }}</a> {% endif %}<br />{{ forumrow.LAST_POST_TIME }}{% else %}{{ lang('NO_POSTS') }}<br />&nbsp;{% endif %}</span>
+					</dd>
+				{% else %}
+					<dd>&nbsp;</dd>
+				{% endif %}
+			</dl>
+			{% EVENT forumlist_body_forum_row_append %}
+		</li>
+		{% EVENT forumlist_body_forum_row_after %}
+	{% endif %}
+
+	{% if forumrow.S_LAST_ROW %}
+			</ul>
+
+			</div>
+		</div>
+	{% EVENT forumlist_body_last_row_after %}
+	{% endif %}
+
+{% else %}
+	<div class="panel">
+		<div class="inner">
+		<strong>{{ lang('NO_FORUMS') }}</strong>
+		</div>
+	</div>
+{% endfor %}

@@ -1,0 +1,83 @@
+<fieldset class="fields1">
+	{% if not S_SHOW_DRAFTS %}
+
+		{% if S_GROUP_OPTIONS %}
+			<div class="column2">
+				<label for="group_list"><strong>{{ lang('TO_ADD_GROUPS') }}{{ lang('COLON') }}</strong></label><br />
+				<select name="group_list[]" id="group_list" multiple="multiple" size="3" class="inputbox">{{ S_GROUP_OPTIONS }}</select><br />
+			</div>
+		{% endif %}
+		{% if S_ALLOW_MASS_PM %}
+		<div class="column1">
+			{% if not S_EDIT_POST %}
+			<dl class="pmlist">
+				<dt><label><strong>{{ lang('TO_ADD_MASS') }}{{ lang('COLON') }}</strong><textarea id="username_list" name="username_list" class="inputbox" cols="50" rows="2" tabindex="1"></textarea></label></dt>
+				<dd class="recipients">
+				<input type="submit" name="add_to" value="{{ lang('ADD') }}" class="button2" tabindex="1" />
+				<input type="submit" name="add_bcc" value="{{ lang('ADD_BCC') }}" class="button2" tabindex="1" />
+				{% EVENT posting_pm_header_find_username_before %}
+				<span><a href="{{ U_FIND_USERNAME }}" onclick="find_username(this.href); return false;">{{ lang('FIND_USERNAME') }}</a></span>
+				{% EVENT posting_pm_header_find_username_after %}
+				</dd>
+			</dl>
+			{% endif %}
+		</div>
+		{% if loops.to_recipient|length or loops.bcc_recipient|length %}<hr />{% endif %}
+		<div class="column1">
+			{% if loops.to_recipient|length %}
+				<dl>
+					<dt><label>{{ lang('TO_MASS') }}{{ lang('COLON') }}</label></dt>
+					<dd class="recipients">
+					<ul class="recipients">
+						{% for to_recipient in loops.to_recipient %}
+						<li>
+							{% if not S_EDIT_POST %}<input type="submit" name="remove_{{ to_recipient.TYPE }}[{{ to_recipient.UG_ID }}]" value="x" class="button2" />{% endif %}
+							{% if to_recipient.IS_GROUP %}<a href="{{ to_recipient.U_VIEW }}"><strong>{{ to_recipient.NAME }}</strong></a>{% else %}{{ to_recipient.NAME_FULL }}{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
+					</dd>
+				</dl>
+			{% endif %}
+		</div>
+			{% if loops.bcc_recipient|length %}
+			<div class="column2">
+				<dl>
+					<dt><label>{{ lang('BCC') }}{{ lang('COLON') }}</label></dt>
+					<dd class="recipients">
+					<ul class="recipients">
+						{% for bcc_recipient in loops.bcc_recipient %}
+						<li>
+							{% if not S_EDIT_POST %}<input type="submit" name="remove_{{ bcc_recipient.TYPE }}[{{ bcc_recipient.UG_ID }}]" value="x" class="button2" />{% endif %}
+							{% if bcc_recipient.IS_GROUP %}<a href="{{ bcc_recipient.U_VIEW }}"><strong>{{ bcc_recipient.NAME }}</strong></a>{% else %}{{ bcc_recipient.NAME_FULL }}{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
+					</dd>
+				</dl>
+			</div>
+			{% endif %}
+		{% else %}
+		<div class="column1">
+			<dl>
+				<dt><label for="username_list">{{ lang('TO_ADD') }}{{ lang('COLON') }}</label>{% if not S_EDIT_POST %}<br /><span><a href="{{ U_FIND_USERNAME }}" onclick="find_username(this.href); return false">{{ lang('FIND_USERNAME') }}</a></span>{% endif %}</dt>
+				{% if not S_EDIT_POST %}
+				<dd><input class="inputbox" type="text" name="username_list" id="username_list" size="20" value="" /> <input type="submit" name="add_to" value="{{ lang('ADD') }}" class="button2" /></dd>
+				{% endif %}
+				{% if loops.to_recipient|length %}
+					<dd class="recipients">
+					<ul class="recipients">
+						{% for to_recipient in loops.to_recipient %}
+						<li>
+							{% if to_recipient.IS_GROUP %}<a href="{{ to_recipient.U_VIEW }}"><strong>{{ to_recipient.NAME }}</strong></a>{% else %}{{ to_recipient.NAME_FULL }}{% endif %}&nbsp;
+							{% if not S_EDIT_POST %}<input type="submit" name="remove_{{ to_recipient.TYPE }}[{{ to_recipient.UG_ID }}]" value="x" class="button2" />{% endif %}
+						</li>
+						{% endfor %}
+					</dd>
+				{% endif %}
+			</dl>
+		</div>
+		{% endif %}
+
+	{% endif %}
+	</fieldset>

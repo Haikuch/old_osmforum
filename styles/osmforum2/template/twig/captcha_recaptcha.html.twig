@@ -1,0 +1,43 @@
+{% if S_TYPE == 1 %}
+<div class="panel captcha-panel">
+	<div class="inner">
+
+	<h3 class="captcha-title">{{ lang('CONFIRMATION') }}</h3>
+	<p>{{ lang('CONFIRM_EXPLAIN') }}</p>
+
+	<fieldset class="fields2">
+{% endif %}
+
+{% if S_RECAPTCHA_AVAILABLE %}
+	<dl>
+	<dt><label>{{ lang('CONFIRM_CODE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('RECAPTCHA_EXPLAIN') }}</span></dt>
+	<dd class="captcha">
+		<script>
+		var RecaptchaOptions = {
+			lang : '{{ lang('RECAPTCHA_LANG')|addslashes }}',
+			theme : 'clean',
+			tabindex : {% if definition.CAPTCHA_TAB_INDEX %}{{ definition.CAPTCHA_TAB_INDEX }}{% else %}10{% endif %}
+		};
+		</script>
+		<script src="{{ RECAPTCHA_SERVER }}/challenge?k={{ RECAPTCHA_PUBKEY }}{{ RECAPTCHA_ERRORGET }}"></script>
+
+		<noscript>
+		<div>
+			<object data="{{ RECAPTCHA_SERVER }}/noscript?k={{ RECAPTCHA_PUBKEY }}{{ RECAPTCHA_ERRORGET }}" type="text/html" height="300" width="500"></object><br />
+			<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+			<input type="hidden" name="recaptcha_response_field" value="manual_challenge" />
+		</div>
+		</noscript>
+
+		<a href="http://www.google.com/intl/{{ lang('RECAPTCHA_LANG')|addslashes }}/policies/" target="_blank" class="recaptcha-responsive" style="display: none"><img alt="" width="71" height="36" src="{{ RECAPTCHA_SERVER }}/img/clean/logo.png"></a>
+	</dd>
+	</dl>
+{% else %}
+{{ lang('RECAPTCHA_NOT_AVAILABLE') }}
+{% endif %}
+
+{% if S_TYPE == 1 %}
+	</fieldset>
+	</div>
+</div>
+{% endif %}

@@ -1,0 +1,27 @@
+<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-footer" class="linklist bulletin" role="menubar">
+		<li class="small-icon icon-home breadcrumbs">
+			{% if U_SITE_HOME %}<span class="crumb"><a href="{{ U_SITE_HOME }}" data-navbar-reference="home">{{ lang('SITE_HOME') }}</a></span>{% endif %}
+			{% EVENT overall_footer_breadcrumb_prepend %}
+			<span class="crumb"><a href="{{ U_INDEX }}" data-navbar-reference="index">{{ lang('INDEX') }}</a></span>
+			{% EVENT overall_footer_breadcrumb_append %}
+		</li>
+		{% if U_WATCH_FORUM_LINK and not S_IS_BOT %}<li class="small-icon icon-{% if S_WATCHING_FORUM %}unsubscribe{% else %}subscribe{% endif %}" data-last-responsive="true"><a href="{{ U_WATCH_FORUM_LINK }}" title="{{ S_WATCH_FORUM_TITLE }}" data-ajax="toggle_link" data-toggle-class="small-icon icon-{% if not S_WATCHING_FORUM %}unsubscribe{% else %}subscribe{% endif %}" data-toggle-text="{{ S_WATCH_FORUM_TOGGLE }}" data-toggle-url="{{ U_WATCH_FORUM_TOGGLE }}">{{ S_WATCH_FORUM_TITLE }}</a></li>{% endif %}
+
+		{% EVENT overall_footer_timezone_before %}
+		<li class="rightside">{{ S_TIMEZONE }}</li>
+		{% EVENT overall_footer_timezone_after %}
+		{% if not S_IS_BOT %}
+			<li class="small-icon icon-delete-cookies rightside"><a href="{{ U_DELETE_COOKIES }}" data-ajax="true" data-refresh="true" role="menuitem">{{ lang('DELETE_COOKIES') }}</a></li>
+			{% if S_DISPLAY_MEMBERLIST %}<li class="small-icon icon-members rightside" data-last-responsive="true"><a href="{{ U_MEMBERLIST }}" title="{{ lang('MEMBERLIST_EXPLAIN') }}" role="menuitem">{{ lang('MEMBERLIST') }}</a></li>{% endif %}
+		{% endif %}
+		{% EVENT overall_footer_teamlink_before %}
+		{% if U_TEAM %}<li class="small-icon icon-team rightside" data-last-responsive="true"><a href="{{ U_TEAM }}" role="menuitem">{{ lang('THE_TEAM') }}</a></li>{% endif %}
+		{% EVENT overall_footer_teamlink_after %}
+		{% if U_CONTACT_US %}<li class="small-icon icon-contact rightside" data-last-responsive="true"><a href="{{ U_CONTACT_US }}" role="menuitem">{{ lang('CONTACT_US') }}</a></li>{% endif %}
+	</ul>
+
+	</div>
+</div>
