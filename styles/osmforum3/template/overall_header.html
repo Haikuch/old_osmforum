@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>users: Germany / OpenStreetMap Forum</title>
+<title>{{ SITENAME }}</title>
 <link rel="stylesheet" type="text/css" href="{{ T_THEME_PATH }}/Air.css" />
 <link rel="canonical" href="viewforum.php?id=14" title="Page 1" />
 <link rel="next" href="viewforum.php?id=14&amp;p=2" title="Page 2" />
@@ -18,7 +18,7 @@
 <div id="brdheader" class="block">
 	<div class="box">
 		<div id="brdtitle" class="inbox">
-			<h1><a href="index.php">OpenStreetMap Forum</a></h1>
+			<h1><a href="index.php">{{ SITENAME }}</a></h1>
 			<div id="brddesc">The Free Wiki World Map</div>
 		</div>
 		<div id="brdmenu" class="inbox">
@@ -26,7 +26,7 @@
                             {% if S_REGISTERED_USER %}
     
                                 <li id="navindex" class="isactive"><a href="{{ U_INDEX }}">Index</a></li>
-				<li id="navuserlist"><a href="userlist.php">User list</a></li>
+				<li id="navuserlist"><a href="{{ U_MEMBERLIST }}">User list</a></li>
 				<li id="navsearch"><a href="{{ U_SEARCH }}">Search</a></li>
 				<li id="navprofile"><a href="{{ U_PROFILE }}">Profile</a></li>
 				<li id="navprofile"><a href="{{ U_ACP }}">Admin</a></li>

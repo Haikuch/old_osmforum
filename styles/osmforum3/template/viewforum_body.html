@@ -1,6 +1,5 @@
 {% INCLUDE 'overall_header.html' %}
 
-
 <div class="linkst">
     <div class="inbox crumbsplus">
         <ul class="crumbs">
@@ -10,6 +9,13 @@
                 <li><span>»&#160;</span><a href="{{ navlinks.U_VIEW_FORUM }}">{{ navlinks.FORUM_NAME }}</a></li>
                 {% endfor %}
         </ul>
+        
+        {% if S_HAS_SUBFORUM %}
+    
+    {% INCLUDE 'forumlist_body.html' %}
+    
+{% endif %}
+        
         <div class="pagepost">
             <p class="pagelink conl">
                 {% if loops.pagination|length %}
@@ -18,16 +24,16 @@
                     <span class="pages-label">Pages: </span><strong class="item1">1</strong>
                 {% endif %}
             </p>
-            {% if S_REGISTERED_USER %}
+            {% if S_REGISTERED_USER and U_POST_NEW_TOPIC %}
                 <p class="postlink conr"><a href="{{ U_POST_NEW_TOPIC }}">Post new topic</a></p>
             {% endif %}
         </div>
         <div class="clearer"></div>
     </div>
 </div>
-
+        
+        
 <div id="vf" class="blocktable">
-    <h2><span>Questions and Answers</span></h2>
     <div class="box">
         <div class="inbox">
             <table>
@@ -83,7 +89,7 @@
                         <span class="pages-label">Pages: </span><strong class="item1">1</strong>
                     {% endif %}
                 </p>
-                {% if S_REGISTERED_USER %}
+                {% if S_REGISTERED_USER and U_POST_NEW_TOPIC %}
                     <p class="postlink conr"><a href="{{ U_POST_NEW_TOPIC }}">Post new topic</a></p>
                 {% endif %}
             </div>
@@ -94,12 +100,19 @@
                     <li><span>»&#160;</span><a href="{{ navlinks.U_VIEW_FORUM }}">{{ navlinks.FORUM_NAME }}</a></li>
                 {% endfor %}
             </ul>
-            {% if S_REGISTERED_USER %}
-                <p class="subscribelink clearb">
-                    <a href="{{ S_WATCH_FORUM_LINK }}">Subscribe to this forum</a> - 
+            <p class="subscribelink clearb">
+                {% if S_WATCH_FORUM_LINK %}
+                    <a href="{{ S_WATCH_FORUM_LINK }}">Subscribe to this forum</a>
+                {% endif %}
+                
+                {% if S_WATCH_FORUM_LINK and U_MARK_TOPICS %}
+                    - 
+                {% endif %}
+                
+                {% if U_MARK_TOPICS %}
                     <a href="{{ U_MARK_TOPICS }}">Mark this forum as read</a>
-                </p>
-            {% endif %}
+                {% endif %}
+            </p>
             <div class="clearer"></div>
         </div>
     </div>

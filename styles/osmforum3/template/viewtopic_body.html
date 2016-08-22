@@ -22,7 +22,7 @@
                                 {% endif %}
                             {% endif %}
                         </p>
-                        {% if S_REGISTERED_USER %}
+                        {% if S_REGISTERED_USER and U_POST_REPLY_TOPIC %}
                             <p class="postlink conr"><a href="{{ U_POST_REPLY_TOPIC }}">Post reply</a></p>
                         {% endif %}
 		</div>
@@ -40,6 +40,10 @@
 	<div class="inbox crumbsplus">
 		<div class="pagepost">
 			<p class="pagelink conl"><span class="pages-label">Pages: </span><strong class="item1">1</strong></p>
+			
+                        {% if S_REGISTERED_USER and U_POST_REPLY_TOPIC %}
+                            <p class="postlink conr"><a href="{{ U_POST_REPLY_TOPIC }}">Post reply</a></p>
+                        {% endif %}
 		</div>
 		<ul class="crumbs">
                     <li><a href="index.php">Index</a></li>
@@ -50,6 +54,13 @@
 
                     <li><span>»&#160;</span><a href="{{ U_VIEW_TOPIC }}">{{ TOPIC_TITLE }}</a></li>
 		</ul>
+                
+                {% if U_WATCH_TOPIC %}
+                    <p class="subscribelink clearb">
+                        <a href="{{ U_WATCH_TOPIC }}">{{ L_WATCH_TOPIC }}</a>
+                    </p>
+                {% endif %}
+                
 		<div class="clearer"></div>
 	</div>
 </div>

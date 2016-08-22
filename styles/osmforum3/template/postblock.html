@@ -20,20 +20,31 @@
 				</div>
 			</div>
 		</div>
-		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootleft">
-                                    <p>
-                                        <span>
-                                            {% if postrow.S_ONLINE %}
-                                                Online
-                                            {% else %}
-                                                Offline
-                                            {% endif %}
-                                        </span>
-                                    </p>
-                                </div>
-			</div>
-		</div>
-	</div>
+                <div class="inbox">
+                    <div class="postfoot clearb">
+                        <div class="postfootleft">
+                            {% if postrow.S_ONLINE %}
+                                <p><strong>Online</strong></p>
+                            {% else %}
+                                <p><span>Offline</span></p>
+                            {% endif %}
+                        </div>
+                        <div class="postfootright">
+                            <ul>
+                                {% if postrow.U_REPORT %}
+                                    <li class="postreport"><span><a href="{{ postrow.U_REPORT }}">Report</a></span></li>
+                                {% endif %}
+
+                                {% if postrow.U_EDIT %}
+                                    <li class="postedit"><span><a href="{{ postrow.U_EDIT }}">Edit</a></span></li>
+                                {% endif %}
+
+                                {% if postrow.U_QUOTE %}
+                                    <li class="postquote"><span><a href="{{ postrow.U_QUOTE }}">Quote</a></span></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
 </div>
