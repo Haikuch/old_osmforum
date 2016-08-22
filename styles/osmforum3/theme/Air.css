@@ -1667,3 +1667,14 @@ html, body, .pun {
 .pun .inew .icon {
 	border-color: #91b3d9 #87a8d1 #6c85bb #7292c3;
 }
+
+
+/* New added */
+#search .bull {
+    position: relative;
+    top: 2px;
+}
+
+.pun .checklist {
+	height: 250px;
+}
