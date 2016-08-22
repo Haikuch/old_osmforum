@@ -3,7 +3,7 @@
 <div id="searchform" class="blockform">
     <h2><span>Search</span></h2>
     <div class="box">
-        <form id="search" method="get" action="search.php">
+        <form method="get" action="{{ S_SEARCH_ACTION }}" data-focus="keywords">
             <div class="inform">
                 <fieldset>
                     <legend>Enter your search criteria</legend>
@@ -86,7 +86,10 @@
                     </div>
                 </fieldset>
             </div>
-            <p class="buttons"><input type="submit" name="search" value="Submit" accesskey="s" /></p>
+            <p class="buttons">
+                {{ S_HIDDEN_FIELDS }}<input type="reset" value="{{ lang('RESET') }}" name="reset" class="button2" />&nbsp;
+		<input type="submit" name="submit" value="{{ lang('SEARCH') }}" class="button1" />
+            </p>
         </form>
     </div>
 </div>

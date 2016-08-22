@@ -31,8 +31,7 @@
         <div class="clearer"></div>
     </div>
 </div>
-        
-        
+
 <div id="vf" class="blocktable">
     <div class="box">
         <div class="inbox">
@@ -56,12 +55,12 @@
                                         <strong>
                                             <a href="{{ topicrow.U_VIEW_TOPIC }}">{{ topicrow.TOPIC_TITLE }}</a> 
                                             <span class="byuser">by {{ topicrow.TOPIC_AUTHOR }}</span></strong> 
-                                            
-                                            {% if topicrow.S_UNREAD_TOPIC %}
-                                                <span class="newtext">
-                                                    [ <a href="{{ topicrow.U_NEWEST_POST }}" title="Go to the first new post in this topic.">New posts</a> ]
-                                                </span>
-                                            {% endif %}
+
+                                        {% if topicrow.S_UNREAD_TOPIC %}
+                                            <span class="newtext">
+                                                [ <a href="{{ topicrow.U_NEWEST_POST }}" title="Go to the first new post in this topic.">New posts</a> ]
+                                            </span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </td>

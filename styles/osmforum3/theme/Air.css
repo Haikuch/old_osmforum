@@ -1678,3 +1678,21 @@ html, body, .pun {
 .pun .checklist {
 	height: 250px;
 }
+
+#search-results.posts h2 {
+    
+    padding-left: 10px;
+}
+
+#search-results.posts .date {
+    
+    float: right;
+    position: relative;
+    top: -18px;
+    height: 0px;
+}
+
+.posthilit {
+    
+    background: yellow;
+}
