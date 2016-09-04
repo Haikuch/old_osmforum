@@ -17,7 +17,7 @@ $profile-width:							150px !default;
 $profile-side:							left !default;	// left or right
 $post-margin:							($profile-width + 10px) !default;
 
-$use-wrapper:							true !default;	// true or false
+$use-wrapper:							false !default;	// true or false
 $max-width:								none !default;	// Maximum width. Set to "none" to make layout fluid
 
 $split-forums:							true !default;	// Changes layout of forums list. Values are true or false
@@ -110,15 +110,15 @@ $black-color:							#000 !default;		// Main color to mix with. Black for light s
 $white-color:							#fff !default;		// Opposite of $black-color
 
 // Page colors
-$page-background:						#F6F9FC !default;	// HTML element
-$content-background:					#e0e0e0 !default;	// Page inside content wrapper
-$content-border-color:					#e0e0e0 !default;	// Border color for content wrapper
+$page-background:						white !default;	// HTML element
+$content-background:					white !default;	// Page inside content wrapper
+$content-border-color:					black !default;	// Border color for content wrapper
 
 // Primary colors
 $primary-color:							#44699C !default;	// Main color, used for links and stuff
 $secondary-color:						#d06d3c !default;	// Secondary color, usually in red - yellow range
 $overlay-color:							$white-color !default;	// Text on top of sections that use colorful background.
-$block-background:						#f4f4f4 !default;	// Background of blocks
+$block-background:						#EBF1F5 !default;	// Background of blocks
 $block-background-reported:				#f5ede9 !default;	// Background for reported posts
 
 // Global color values
@@ -143,7 +143,7 @@ $block-background2:						#f6f6f6 !default;	// Blocks with .bg2 background color
 $block-background3:						#f8f8f8 !default;	// Blocks with .bg3 background color - mostly UCP/MCP and posting form
 
 $block-border:							#e0e0e0 !default;	// Border color for blocks
-$border-radius:							3px !default;		// Main border radius
+$border-radius:							0px !default;		// Main border radius
 $block-top-border:						lighten($block-background, 10%) !default;	// Top border of forums in forums list
 $block-bottom-border:					darken($block-background, 5%) !default;		// Bottom border of forums in forums list
 $block-inner-border:					$block-bottom-border !default;	// Border inside blocks where there is only 1 border instead of top/bottom borders
@@ -261,7 +261,7 @@ $big-button-border-radius:				4px !default;	// For big buttons and blocks like q
 // BBCode
 $bbcode-border-radius:					0px !default;
 $bbcode-background:						#fff !default;
-$bbcode-background2:					#f4f4f4 !default;
+$bbcode-background2:					#EBF1F5 !default;
 $bbcode-outer-border:					if($light, darken($bbcode-background, 7%), lighten($bbcode-background, 7%)) !default;
 $bbcode-inner-border:					if($light, darken($bbcode-background, 5%), lighten($bbcode-background, 5%)) !default;
 $bbcode-heading-text:					#666 !default;

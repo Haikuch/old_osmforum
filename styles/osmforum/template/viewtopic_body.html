@@ -1,1 +1,68 @@
-twig/viewtopic_body.html.twig
+
+{% INCLUDE 'osmforum_header.html' %}
+
+<div class="linkst">
+	<div class="inbox crumbsplus">
+		<ul class="crumbs">
+                    <li><a href="index.php">Index</a></li>
+
+                    {% for navlinks in loops.navlinks %}
+                        <li><span>»&#160;</span><a href="{{ navlinks.U_VIEW_FORUM }}">{{ navlinks.FORUM_NAME }}</a></li>
+                    {% endfor %}
+
+                    <li><span>»&#160;</span><a href="{{ U_VIEW_TOPIC }}">{{ TOPIC_TITLE }}</a></li>
+		</ul>
+		<div class="pagepost">
+			<p class="pagelink conl">
+                            {% if loops.pagination|length or TOTAL_POSTS %}
+                                {% if loops.pagination|length %}
+                                        {% INCLUDE 'pagination.html' %}
+                                {% else %}
+                                        <span class="pages-label">Pages: </span><strong class="item1">1</strong>
+                                {% endif %}
+                            {% endif %}
+                        </p>
+                        {% if S_REGISTERED_USER and U_POST_REPLY_TOPIC %}
+                            <p class="postlink conr"><a href="{{ U_POST_REPLY_TOPIC }}">Post reply</a></p>
+                        {% endif %}
+		</div>
+		<div class="clearer"></div>
+	</div>
+</div>
+
+{% for postrow in loops.postrow %}
+    
+    {% INCLUDE 'postblock.html' %}
+	
+{% endfor %}
+
+<div class="postlinksb">
+	<div class="inbox crumbsplus">
+		<div class="pagepost">
+			<p class="pagelink conl"><span class="pages-label">Pages: </span><strong class="item1">1</strong></p>
+			
+                        {% if S_REGISTERED_USER and U_POST_REPLY_TOPIC %}
+                            <p class="postlink conr"><a href="{{ U_POST_REPLY_TOPIC }}">Post reply</a></p>
+                        {% endif %}
+		</div>
+		<ul class="crumbs">
+                    <li><a href="index.php">Index</a></li>
+
+                    {% for navlinks in loops.navlinks %}
+                        <li><span>»&#160;</span><a href="{{ navlinks.U_VIEW_FORUM }}">{{ navlinks.FORUM_NAME }}</a></li>
+                    {% endfor %}
+
+                    <li><span>»&#160;</span><a href="{{ U_VIEW_TOPIC }}">{{ TOPIC_TITLE }}</a></li>
+		</ul>
+                
+                {% if U_WATCH_TOPIC %}
+                    <p class="subscribelink clearb">
+                        <a href="{{ U_WATCH_TOPIC }}">{{ L_WATCH_TOPIC }}</a>
+                    </p>
+                {% endif %}
+                
+		<div class="clearer"></div>
+	</div>
+</div>
+
+{% INCLUDE 'osmforum_footer.html' %}

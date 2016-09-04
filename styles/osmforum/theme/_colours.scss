@@ -5,9 +5,9 @@
 
 html, body {
 	color: $text-color;
-        background: $page-background;
-	
-        @if $use-wrapper {
+	//background-image: url('./images/pattern.png');
+        //background: #F6F9FC !important;
+	@if $use-wrapper {
 		background-color: $page-background;
 		&.simple {
 			background-color: $content-background;

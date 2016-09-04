@@ -281,11 +281,9 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 // Site description and logo
 #site-description {
 	@extend %clearfix;
-	a.sitename {
+	h1, p.sitename {
 		margin-left: 0;
 		margin-right: 0;
-                font-size: 15pt !important;
-                font-weight: bold;
 	}
 
 	@if $center-logo == true {
