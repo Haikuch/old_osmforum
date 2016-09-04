@@ -1,0 +1,61 @@
+
+/* ---overwriting the original style--- */
+
+/* full width */
+.pun {
+    
+    max-width: none;
+    margin: 0;
+}
+
+
+/* fixing the quoting selection */
+.pun blockquote {
+	border-style: solid;
+	border-width: 1px 1px 1px 3px;
+	margin: 0.75em 1em;
+	padding: 0 0.75em;
+}
+
+.pun blockquote cite {
+	display: block;
+	padding: 0.75em 0 0 0;
+	font-weight: bold;
+	line-height: 1.462em;
+}
+
+.pun blockquote {
+	overflow: hidden;
+	width: 100%;
+}
+
+
+/* ----New added---- */
+
+/* Fixing the bullet image position */
+#searchform .bull {
+    position: relative;
+    top: 2px;
+}
+
+.pun .checklist {
+    height: 250px;
+}
+
+/* fixing the name position */
+#search-results.posts h2 {
+    padding-left: 10px;
+}
+
+/* fixing the date position */
+#search-results.posts .date {
+    float: right;
+    position: relative;
+    top: -18px;
+    height: 0px;
+}
+
+/* highlighting of seaarchresults */
+.posthilit {
+    background: yellow;
+}
