@@ -9,3 +9,6 @@
 /images/ranks/*
 /install/schemas/schema.json
 /_collect/
+nbproject
+/styles/osmforum2
+/styles/osmforum3
